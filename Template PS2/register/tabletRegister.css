@@ -1,0 +1,15 @@
+.container-register{
+    min-width: 290px;
+    max-width: 500px;
+    max-height: 628px;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+    border-radius: 10px;
+}
+
+.container-register input{
+    width: 90%;
+}
+
+.container-register button{
+    width: 90%;
+}

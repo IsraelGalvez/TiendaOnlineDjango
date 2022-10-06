@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Login {% endblock %}
+{% block content %}
+<header>
+    <div class="div-header">
+        <a href="./hola.html">
+            <figure class="logo-figure">
+                <img src="{% static 'users/images/Blanco.svg' %}" alt="Logo tienda">
+            </figure>
+        </a>
+    </div>
+</header>
+<main>
+    <form method="post" class="container-login">{% csrf_token %}
+        <h1>Login</h1>
+        <p>Please enter your e-mail and password:</p>
+        {{ form }}
+        <div class="hola">
+            <a class="hola2" href="{% url 'users_app:user-new-password' %}">Forgot password?</a>
+        </div>
+        <button>Login</button>
+        <p>Don't have an account? <a href="{% url 'users_app:user-register'  %}">Create one</a></p>
+    </form>
+</main>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Change password {% endblock %}
+{% block content %}
+<header>
+    <div class="div-header">
+        <a href="../login/indexLogin.html">
+            <figure class="logo-figure">
+                <img src="{% static 'users/images/Blanco.svg' %}" alt="Logo tienda">
+            </figure>
+        </a>
+    </div>
+</header>
+<main>
+    <form action="" class="container-password">
+        <h1>RECOVER PASSWORD</h1>
+        <p>Please enter your email:</p>
+        <input type="email" placeholder="Email">
+        <button>RECOVER</button>
+        <p>Remember your password? <a href="{% url 'users_app:user-login' %}">Back to login</a></p>
+    </form>
+</main>
+{% endblock %}
