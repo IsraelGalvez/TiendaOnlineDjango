@@ -3,11 +3,10 @@ from django.views.generic import (
 )
 
 from .models import Producto
-from .models import Categoria
 # Create your views here.
 
 class listAllProducts(ListView):
-    template_name = 'users/main.html'
+    template_name = 'products/main.html'
     model = Producto
 
 class listProductsCategory(ListView):

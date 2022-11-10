@@ -211,13 +211,16 @@ main .title-container-products{
     color: #1d76bb;
     text-transform: uppercase;
     font-weight: 600;
+    text-align: center;
 }
+
 .continer-section2{
     display: flex;
     flex-wrap: wrap;
     width: 100%;
     justify-content: center;
     max-width: 1400px;
+    margin: 0 auto;
 }
 
 .continer-pruduct{

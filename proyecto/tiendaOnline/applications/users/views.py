@@ -54,7 +54,7 @@ class LogoutView(View):
         )
 
 class Main(TemplateView):
-    template_name = 'users/main.html'
+    template_name = 'products/main.html'
 
 class CambiarContrasenaView(LoginRequiredMixin, FormView):
     template_name = 'users/cambiarContrasena.html'
