@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./styleMain.css">
+</head>
+<body>
+    <header>
+        <nav class="nav-header">
+            <ul class="nav">
+                <div class="nav-logo2">
+                    <a href="{% url 'product_app:home' %}">
+                        <figure class="logo-figure">
+                            <img src="../img/Blanco.svg" alt="Logo tienda">
+                        </figure>
+                    </a>
+                </div>
+                <li class="height-li"><a href="#">Camisetas</a></li>
+                <li class="height-li"><a href="#">Pantalones</a></li>
+                <li class="height-li"><a href="#">Sueters</a></li>
+            </ul>
+            <div class="menu-icon">
+                <div class="top"></div>
+                <div class="middle"></div>
+                <div class="bottom"></div>
+            </div>
+            <!-- LOGO DE LA EMPRESA -->
+            <div class="nav-logo">
+                <a href="#">
+                    <figure class="logo-figure">
+                        <img src="../img/Blanco.svg" alt="Logo tienda">
+                    </figure>
+                </a>
+            </div>
+            <!-- Iconos de usuario y carrito -->
+                <ul class="header-ul">
+                    <li>
+                        <a href="#" class="icon-user"></a>
+                        <ul class="hola">
+                            
+                            {% if user.is_authenticated %}
+                                <li><a class="card-title">¡Bienvenido {{user}}!</a></li>
+                                
+                                <li><a href="#">Change password</a></li>
+                                
+                                {% if user.is_superuser %}
+                                    <li><a href="#">Admin</a></li>
+                                {% endif %}
+                            {% else %}
+                                <li><a class="card-title">¡Bienvenido!</a></li>
+                            {% endif %}
+                            {% if user.is_authenticated %}
+                                <li><a href="#" role="button">Logout</a></li>
+                            {% else %}
+                                <li><a href="#" role="button">Login</a></li>
+                            {% endif %}
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <figure class="user-figure">
+                                <img class="img-carrito" src="../img/icon-carritoDeCompras.png" alt="Icono de carrito de compras">
+                            </figure>
+                        </a>
+                    </li>
+                </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <section class="main-fondo">
+            <picture class="img-main">
+                <img class="imagen-fondo900" src="../img/pexels-sam-lion-5709661.jpg" alt="">
+                <img class="imagen-fondo1024" src="../img/pexels-tembela-bohle-1884584.jpg" alt="">
+            </picture>
+        </section>
+        <p class="title-container-products">All products</p>
+        <section class="continer-section2">
+            {% for product in object_list %}
+                <a href="#" class="continer-pruduct">
+                    <figure class="product-image">
+                        <img src="{{product.image}}" alt="">
+                    </figure>
+                    <p class="product-name">{{product.name}}</p>
+                    <p class="product-price">${{product.price}}</p>
+                </a>
+            {% endfor %}
+        </section>
+            
+    </main>
+    
+    <script src="{% static 'users/js/script.js' %}"></script>
+</body>
+</html>

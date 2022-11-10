@@ -7,12 +7,19 @@ from .models import User
 from django.urls import reverse_lazy, reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView
+from django.shortcuts import render
 
+def home_screen_view(request):
+    context = {}
+
+    context['some_num'] = 1
+
+    return render(request, "user_app/user-login.html")
 
 class UserRegisterView(FormView):
     template_name = 'users/register.html'
     form_class = UserRegisterForm
-    success_url = 'users_app:user-login'
+    success_url = reverse_lazy('users_app:user-login')
 
     def form_valid(self, form):
         User.objects.create_user(
@@ -27,7 +34,7 @@ class UserRegisterView(FormView):
 class Login(FormView):
     template_name = 'users/login.html'
     form_class = LoginForm
-    success_url = reverse_lazy('users_app:home')
+    success_url = reverse_lazy('product_app:home')
 
     def form_valid(self, form):
         user = authenticate(
@@ -49,7 +56,7 @@ class LogoutView(View):
 class Main(TemplateView):
     template_name = 'users/main.html'
 
-class CambiarContrasenaView(FormView):
+class CambiarContrasenaView(LoginRequiredMixin, FormView):
     template_name = 'users/cambiarContrasena.html'
     form_class = CambiarContrasena
     success_url = reverse_lazy('users_app:user-login')

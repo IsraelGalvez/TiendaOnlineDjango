@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Main {% endblock %}
+{% block content %}
+<header>
+    <nav class="nav-header">
+        <ul class="nav">
+            <div class="nav-logo2">
+                <a href="{% url 'product_app:home' %}">
+                    <figure class="logo-figure">
+                        <img src="{% static 'users/images/Blanco.svg' %}" alt="Logo tienda">
+                    </figure>
+                </a>
+            </div>
+            <li class="height-li"><a href="{% url 'product_app:playeras' %}">Camisetas</a></li>
+            <li class="height-li"><a href="{% url 'product_app:pantalones' %}">Pantalones</a></li>
+            <li class="height-li"><a href="{% url 'product_app:sudaderas' %}">Sueters</a></li>
+        </ul>
+        <div class="menu-icon">
+            <div class="top"></div>
+            <div class="middle"></div>
+            <div class="bottom"></div>
+        </div>
+        <!-- LOGO DE LA EMPRESA -->
+        <div class="nav-logo">
+            <a href="{% url 'product_app:home' %}">
+                <figure class="logo-figure">
+                    <img src="{% static 'users/images/Blanco.svg' %}" alt="Logo tienda">
+                </figure>
+            </a>
+        </div>
+        <!-- Iconos de usuario y carrito -->
+            <ul class="header-ul">
+                <li>
+                    <a href="#" class="icon-user"></a>
+                    <ul class="hola">
+                        
+                        {% if user.is_authenticated %}
+                            <li><h4 class="card-title">¡Bienvenido {{user}}!</h4></li>
+                            
+                            <li><a href="{% url 'users_app:user-new-password' %}">Change password</a></li>
+                            
+                            {% if user.is_superuser %}
+                                <li><a href="{% url 'admin:index' %}">Admin</a></li>
+                            {% endif %}
+                        {% else %}
+                            <li><h4 class="card-title">¡Bienvenido!</h4></li>
+                        {% endif %}
+                        <li><a href="{% url 'users_app:user-logout' %}" role="button">Logout</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">
+                        <figure class="user-figure">
+                            <img class="img-carrito" src="{% static 'users/images/icon-carritoDeCompras.png' %}" alt="Icono de carrito de compras">
+                        </figure>
+                    </a>
+                </li>
+            </ul>
+    </nav>
+</header>
+
+<main>
+    <section class="continer-section2">
+        {% for product in object_list %}
+            <a href="#" class="continer-pruduct">
+                <figure class="product-image">
+                    <img src="{{product.image}}" alt="">
+                </figure>
+                <p class="product-name">{{product.name}}</p>
+                <p class="product-price">${{product.price}}</p>
+            </a>
+        {% endfor %}
+    </section>
+        
+</main>
+
+<script src="{% static 'users/js/script.js' %}"></script>
+{% endblock %}

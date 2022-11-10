@@ -4,7 +4,7 @@
 {% block content %}
 <header>
     <div class="div-header">
-        <a href="../login/indexLogin.html">
+        <a href="{% url 'product_app:home' %}">
             <figure class="logo-figure">
                 <img src="{% static 'users/images/Blanco.svg' %}" alt="Logo tienda">
             </figure>
@@ -12,11 +12,11 @@
     </div>
 </header>
 <main>
-    <form action="" class="container-password">
-        <h1>RECOVER PASSWORD</h1>
-        <p>Please enter your email:</p>
-        <input type="email" placeholder="Email">
-        <button>RECOVER</button>
+    <form method="post" class="container-password">{% csrf_token %}
+        <h1>CHANGE PASSWORD</h1>
+        <p>Please enter your password:</p>
+        {{ form }}
+        <button>CHANGE</button>
         <p>Remember your password? <a href="{% url 'users_app:user-login' %}">Back to login</a></p>
     </form>
 </main>

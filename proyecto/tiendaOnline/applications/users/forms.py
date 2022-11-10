@@ -9,7 +9,8 @@ class LoginForm(forms.Form):
         label= "",
         widget = forms.TextInput(
             attrs = {
-                'placeholder':'Email',
+                'name': 'user',
+                'placeholder':'Username',
             }
         )
     )
@@ -19,6 +20,7 @@ class LoginForm(forms.Form):
         label= "",
         widget = forms.PasswordInput(
             attrs = {
+                'name': 'pass',
                 'placeholder':'Password',
             }
         )
@@ -117,7 +119,6 @@ class CambiarContrasena(forms.Form):
         widget = forms.PasswordInput(
             attrs = {
                 'placeholder':'Contrasena actual',
-                'class':'form-control mb-2' 
             }
         )
     )
@@ -128,7 +129,6 @@ class CambiarContrasena(forms.Form):
         widget = forms.PasswordInput(
             attrs = {
                 'placeholder':'Contrasena nueva',
-                'class':'form-control mb-2' 
             }
         )
     )
@@ -139,7 +139,6 @@ class CambiarContrasena(forms.Form):
         widget = forms.PasswordInput(
             attrs = {
                 'placeholder':'Confirmar contrasena nueva',
-                'class':'form-control mb-2' 
             }
         )
     )
