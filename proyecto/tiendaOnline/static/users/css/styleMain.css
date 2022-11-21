@@ -202,6 +202,7 @@ main{
 
 main .img-main img {
     width: 100%;
+    height: 91vh;
     object-fit: cover;
 }
 main .title-container-products{
@@ -305,6 +306,7 @@ main .title-container-products{
     }
 
     .continer-pruduct{
-        margin-right: 30px;
+        margin-right: 15px;
+        margin-left: 15px;
     }
 }
