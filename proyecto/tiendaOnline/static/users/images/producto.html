@@ -1,0 +1,132 @@
+{% extends 'baseProducts.html' %}
+{% load static %}
+{% block title %} Main {% endblock %}
+{% block content %}
+<header class="header">
+    <nav class="nav-header">
+        <ul class="nav">
+            <div class="nav-logo2">
+                <a href="{% url 'product_app:home' %}">
+                    <figure class="logo-figure">
+                        <img src="{% static 'users/images/Blanco.svg' %}" alt="Logo tienda">
+                    </figure>
+                </a>
+            </div>
+            <li class="height-li"><a href="{% url 'product_app:playeras' %}">Camisetas</a></li>
+            <li class="height-li"><a href="{% url 'product_app:pantalones' %}">Pantalones</a></li>
+            <li class="height-li"><a href="{% url 'product_app:sudaderas' %}">Sueters</a></li>
+        </ul>
+        <div class="menu-icon">
+            <div class="top"></div>
+            <div class="middle"></div>
+            <div class="bottom"></div>
+        </div>
+        <!-- LOGO DE LA EMPRESA -->
+        <div class="nav-logo">
+            <a href="#">
+                <figure class="logo-figure">
+                    <img src="{% static 'users/images/Blanco.svg' %}" alt="Logo tienda">
+                </figure>
+            </a>
+        </div>
+        <ul class="header-ul">
+            <li>
+                <a href="#" class="icon-user"></a>
+                <ul class="hola">
+                    {% if user.is_authenticated %}
+                        <li><a class="card-title">¡Bienvenido {{user}}!</a></li>
+                        
+                        <li><a href="#">Change password</a></li>
+                        
+                        {% if user.is_superuser %}
+                            <li><a href="#">Admin</a></li>
+                        {% endif %}
+                    {% else %}
+                        <li><a class="card-title">¡Bienvenido!</a></li>
+                    {% endif %}
+                    {% if user.is_authenticated %}
+                        <li><a href="#" role="button">Logout</a></li>
+                    {% else %}
+                        <li><a href="#" role="button">Login</a></li>
+                    {% endif %}
+                </ul>
+            </li>
+            <li>
+                <div class="header_cart-avatar">
+                    <div class="header_cart">
+                        <div class="header_cart--notification">0</div>
+                        <img class="icon-card" src="{% static 'users/images/icon-carritoDeCompras.png' %}" alt="cart">
+                    </div>
+                </div>
+            </li>
+        </ul>
+</header>
+<main class="main-container">
+
+    <!-- Contenido de la página -->
+    <section class="content">
+        {% for product in object_list %}
+        <article class="gallery">
+            <img class="gallery_image-container" src="{{product.image}}"></img>
+            <img class="gallery_previus" src="img/angle-left-solid.svg" alt="icon previus">
+            <img class="gallery_next" src="img/angle-right-solid.svg" alt="icon next">
+            
+        </article>
+
+        <article class="details">
+            <h2 class="details_company">8a comerce</h2>
+            
+            <h2 class="details_tittle">{{product.name}}</h2> 
+            <div class="details_prices">
+                <p class="details_now">${{product.price}} <span class="details_discount">10%</span></p>
+            </div>
+            <div class="details_product-quantity">
+                <div class="input">
+                    <img class="input_minus" src="{% static 'users/images/minus-solid.svg' %}" alt="icon minus">
+                    <input class="input_number" type="number" value="0">
+                    <img class="input_plus" src="{% static 'users/images/plus-solid.svg' %}" alt="icon plus">
+                </div>
+                <button class="details_button"><img class="img-button" src="{% static 'users/images/icon-carritoDeCompras.png' %}" alt="icon cart"> Add to cart</button>
+            </div>
+            {% endfor %}
+        </article>
+    </section>
+
+    <!-- Cart modal -->
+    <div class="cart-modal">
+        <p class="cart-modal_tittle">Cart</p>
+        <div class="cart-modal_checkout-container">
+            <div class="cart-modal_details-container">
+                <img class="cart-modal_image" src="https://http2.mlstatic.com/D_NQ_NP_944368-MLM41601624126_042020-O.webp" alt="img product">
+                <div>
+                    <p class="cart-modal_product-container">Playera del Necaza edición limitada</p>
+                    <p class="cart-modal_price-container">$1,350.00 x 1 <span>$1,350.00</span></p>
+                </div>
+                <img class="cart-modal_delete" src="img/icon-delete.svg" alt="icon delete">
+            </div>
+            <button class="cart-modal_checkout">Chekout</button>
+        </div>
+    </div>
+</main>
+
+
+<footer class="atribution">
+
+</footer>
+
+<!-- Gallery modal -->
+<div class="modal-gallery_background">
+    <article class="modal-gallery">
+        <div class="modal-gallery_close-container">
+            <img class="modal-gallery_close" src="img/xmark-solid.svg" alt="icon close">
+        </div>
+        <div class="modal-gallery_image-container">
+            <img class="modal-gallery_previus" src="img/angle-left-solid.svg" alt="icon previus">
+            <img class="modal-gallery_next" src="img/angle-right-solid.svg" alt="icon next">
+        </div>
+
+    </article>
+</div>
+
+<script src="{% static 'users/js/scriptProducto.js' %}"></script>
+{% endblock %}

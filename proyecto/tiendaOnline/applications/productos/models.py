@@ -1,6 +1,6 @@
-from codecs import mbcs_decode
 from email.policy import default
 from django.db import models
+from applications.users.models import User
 
 # Create your models here.
 class Categoria(models.Model):
@@ -18,4 +18,11 @@ class Producto(models.Model):
     amount = models.IntegerField('Cantidad')
 
     def __str__(self):
-        return self.name + '-' + self.categorias.name + "-" + str(self.amount)
+        return self.name 
+    
+class Carrito(models.Model):
+    producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
+
+    def __str__(self):
+        return self.producto

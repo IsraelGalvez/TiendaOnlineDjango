@@ -2,7 +2,9 @@ from django.views.generic import (
     ListView
 )
 
-from .models import Producto
+from .models import Producto ,Carrito
+from applications.users.models import User
+from django.views.generic import View
 # Create your views here.
 
 class listAllProducts(ListView):
@@ -29,4 +31,23 @@ class listProductsCategorySueter(ListView):
     queryset = Producto.objects.filter(
         categorias__name ="Sudaderas"
     )
+
+class ProductView(ListView):
+    """ Trae la informacion de un producto con el id """
+    template_name = 'products/producto.html'
+
+    def get_queryset(self):
+        pk = self.kwargs['pk']
+        lista = Producto.objects.filter(
+            id = pk
+        )   
+        return lista
+
+
+class CarritoProducts(ListView):
+    template_name = 'products/carrito.html'
+    model = Producto
+
+class AddProductToCar(View):
+    model = Carrito
 

@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'baseProducts.html' %}
 {% load static %}
 {% block title %} Main {% endblock %}
 {% block content %}
@@ -63,17 +63,20 @@
 <main>
     <section class="continer-section2">
         {% for product in object_list %}
-            <a href="#" class="continer-pruduct">
-                <figure class="product-image">
-                    <img src="{{product.image}}" alt="">
-                </figure>
-                <p class="product-name">{{product.name}}</p>
-                <p class="product-price">${{product.price}}</p>
-            </a>
+            <form method="GET">
+                <a class="continer-pruduct" href="{% url 'product_app:producto' pk=product.id %}">
+                    <figure class="product-image">
+                        <img src="{{product.image}}" alt="Imagen del producto">
+                    </figure>
+                    <p class="product-name">{{product.name}}</p>
+                    <p class="product-price">${{product.price}}</p>
+                </a>
+            </form>
         {% endfor %}
     </section>
         
 </main>
 
+<script src="{% static 'users/js/scriptProducto.js' %}"></script>
 <script src="{% static 'users/js/script.js' %}"></script>
 {% endblock %}

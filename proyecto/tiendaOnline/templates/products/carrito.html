@@ -23,7 +23,7 @@
         </div>
         <!-- LOGO DE LA EMPRESA -->
         <div class="nav-logo">
-            <a href="#">
+            <a href="{% url 'product_app:home' %}">
                 <figure class="logo-figure">
                     <img src="{% static 'users/images/Blanco.svg' %}" alt="Logo tienda">
                 </figure>
@@ -61,28 +61,45 @@
             </li>
         </ul>
 </header>
+<main class="main-container">
+    <!-- Contenido del checkout -->
+    <section class="content_checkout">
+        <article class="cheackout-modal">
+            <h2 class="cheackout-modal_tittle">Total a pagar: $</h2>
+            <button class="cheackout-modal_button">Proceder al pago</button>
+        </article>
 
-<main>
-    <section class="main-fondo">
-        <picture class="img-main">
-            <img class="imagen-fondo900" src="{% static 'users/images/pexels-sam-lion-5709661.jpg' %}" alt="">
-            <img class="imagen-fondo1024" src="{% static 'users/images/pexels-tembela-bohle-1884584.jpg' %}" alt="">
-        </picture>
+        <article class="gallery_checkout">
+            <div class="gallery_checkout_tittle">
+                <h2 class="gallery_checkout_tittle-name">Carrito</h2>
+                <p class="gallery_checkout_tittle-deselect">Deseleccionar todos los articulos</p>
+            </div>
+            <div class="details_checkout">
+                <div class="gallery_checkout_container">
+                    <img class="gallery_checkout_container_image" src="img/image-article-thumnail_1-min.png" alt="product image">
+
+                    <div class="details_checkout_prices">
+                        <h4 class="details_checkout_product-name">Jersey chivas edición '22-'23</h4>
+                        <p class="details_checkout_more-info"></p>
+                        <h2 class="details_checkout_before">$1,350.00</h2>
+                    </div>
+                </div>
+                <div class="details_checkout_quantity">
+                    <div class="input-checkout">
+                        <img class="input-checkout_minus" src="img/minus-solid.svg" alt="icon minus">
+                        <input class="input-checkout_number" type="text" value="0">
+                        <img class="input-checkout_plus" src="img/plus-solid.svg" alt="icon plus">
+                    </div>
+                    <button class="details_checkout_button-add">Agregar</button>     
+                    <button class="details_checkout_button-delete">Eliminar</button>    
+                </div>
+            </div>
+        </article>
+        <div class="box-pay">
+            <h4 class="box-pay_text">Subtotal a pagar: $</h4>
+        </div>
     </section>
-    <p class="title-container-products">All products</p>
-    <section class="continer-section2">
-        {% for product in object_list %}
-            <form method="GET">
-                <a class="continer-pruduct" href="{% url 'product_app:producto' pk=product.id %}">
-                    <figure class="product-image">
-                        <img src="{{product.image}}" alt="Imagen del producto">
-                    </figure>
-                    <p class="product-name">{{product.name}}</p>
-                    <p class="product-price">${{product.price}}</p>
-                </a>
-            </form>
-        {% endfor %}
-    </section>
+
     <!-- Cart modal -->
     <div class="cart-modal">
         <p class="cart-modal_tittle">Cart</p>
@@ -98,9 +115,10 @@
             <button class="cart-modal_checkout">Chekout</button>
         </div>
     </div>
+
 </main>
+<footer></footer>
 
-<script src="{% static 'users/js/script.js' %}"></script>
 <script src="{% static 'users/js/scriptProducto.js' %}"></script>
-
+<script src="{% static 'users/js/script.js' %}"></script>
 {% endblock %}
