@@ -23,6 +23,7 @@ class Producto(models.Model):
 class Carrito(models.Model):
     producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
     usuario = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
+    cantidad = models.IntegerField('Cantidad',default=0)
 
     def __str__(self):
-        return self.producto
+        return self.producto.name

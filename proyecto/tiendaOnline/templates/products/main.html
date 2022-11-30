@@ -99,8 +99,17 @@
         </div>
     </div>
 </main>
-
-<script src="{% static 'users/js/script.js' %}"></script>
+<!-- Gallery modal -->
+<div class="modal-gallery_background">
+    <article class="modal-gallery">
+        <div class="modal-gallery_close-container">
+            <img class="modal-gallery_close" src="{% static 'users/images/xmark-solid.svg' %}" alt="icon close">
+        </div>
+        <img src="{{product.image}}" class="modal-gallery_image-container"></img>
+    </article>
+</div>
 <script src="{% static 'users/js/scriptProducto.js' %}"></script>
+<script src="{% static 'users/js/script.js' %}"></script>
+
 
 {% endblock %}
